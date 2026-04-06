@@ -1,12 +1,15 @@
 import { useState } from "react";
 import signupImg from "../assets/images/signup.gif";
 import avatar from "../assets/images/doctor-img01.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import uploadImageToCloudinary from "../utils/uploadCloudinary";
+import { BASE_URL } from "../config";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewURL, setPreviewURL] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -17,27 +20,54 @@ const Signup = () => {
     role: "customer",
   });
 
+  const navigate = useNavigate();
+
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleFileInputChange = async (event) => {
     const file = event.target.files[0];
-    // console.log(file)
-    //used cloudinary to upload image
     const data = await uploadImageToCloudinary(file);
-    console.log(data);
+    if(data?.url) {
+      setPreviewURL(data.url);
+      setSelectedFile(data.url);
+      setFormData({ ...formData, photo: data.url });
+    }
   };
 
   const submitHandler = async (event) => {
-    console.log(formData);
     event.preventDefault();
+    setLoading(true);
+
+    try {
+      const res = await fetch(`${BASE_URL}/api/v1/auth/register`, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const { message } = await res.json();
+
+      if (!res.ok) {
+        throw new Error(message);
+      }
+
+      setLoading(false);
+      toast.success(message);
+      navigate("/login");
+    } catch (err) {
+      toast.error(err.message);
+      setLoading(false);
+    }
   };
 
   return (
-    <section className="px-5 xl:px-0">
-      <div className="max-w-[1170px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2">
+    <section className="px-5 xl:px-0 min-h-[calc(100vh-150px)] flex items-center justify-center">
+      <div className="max-w-[1170px] mx-auto w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 bg-white shadow-panelShadow rounded-lg">
           {/* ================== Img box ================== */}
           <div className="hidden lg:block bg-blue-500 rounded-l-lg">
             <figure className="rounded-l-lg">
@@ -54,7 +84,7 @@ const Signup = () => {
             <form action="" onSubmit={submitHandler}>
               <div className="mb-5">
                 <input
-                  type="name"
+                  type="text"
                   placeholder="Enter Your Full Name"
                   name="name"
                   value={formData.name}
@@ -102,8 +132,8 @@ const Signup = () => {
                     id="role-select"
                     className="text-[#424242] font-semibold text-[15px] leading-7 px-4 py-3 focus:outline-none"
                   >
-                    <option value="patient">Customer</option>
-                    <option value="doctor">Service Provider</option>
+                    <option value="customer">Customer</option>
+                    <option value="service">Service Provider</option>
                   </select>
                 </label>
 
@@ -128,9 +158,11 @@ const Signup = () => {
               </div>
 
               <div className="mb-5 flex items-center gap-3">
-                <figure className="w-[60px] h-[60px] rounded-full border-2 border-solid border-blue-600 flex items-center justify-center">
-                  <img src={avatar} alt="" className="w-full rounded-full" />
-                </figure>
+                {selectedFile && (
+                  <figure className="w-[60px] h-[60px] rounded-full border-2 border-solid border-blue-600 flex items-center justify-center">
+                    <img src={previewURL} alt="" className="w-full rounded-full" />
+                  </figure>
+                )}
 
                 <div className="relative w-[130px] h-[50px]">
                   <input
@@ -154,10 +186,11 @@ const Signup = () => {
 
               <div className="mt-7">
                 <button
+                  disabled={loading && true}
                   type="submit"
                   className="w-full bg-blue-500 text-white leading-[30px] rounded-lg px-4 py-3"
                 >
-                  Sign Up
+                  {loading ? 'Loading...' : 'Sign Up'}
                 </button>
               </div>
 

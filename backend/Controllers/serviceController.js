@@ -136,14 +136,13 @@ export const getAllService = async (req, res) => {
         let services;
         if(query){
             services = await Service.find({
-                isApproved: "approved",
                 $or: [
                     { name: { $regex: query, $options: 'i' } },
                     { specialisation: { $regex: query, $options: 'i' } }
                 ]
             }).select("-password");
         }else {
-             services=await Service.find({isApproved: "approved"}).select("-password");
+             services=await Service.find({}).select("-password");
         }
 
         // const services = await Service.find({}).select('-password');

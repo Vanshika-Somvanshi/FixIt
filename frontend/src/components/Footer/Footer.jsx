@@ -35,7 +35,7 @@ const socialLinks =[
       display: "About Us",
     },
     {
-      path: "/",
+      path: "/services",
       display: "Services",
     },
     {
@@ -46,15 +46,15 @@ const socialLinks =[
 
 const quickLinks02 = [
   {
-    path: "/find-a-doctor",
+    path: "/providers",
     display: "Find a Service",
   },
   {
-    path: "/",
-    display: "Request an Appoinment",
+    path: "/providers",
+    display: "Book a Service",
   },
   {
-    path: "/",
+    path: "/providers",
     display: "Find a Location",
   },
   {
@@ -69,7 +69,7 @@ const quickLinks03 = [
     display: "Donate",
   },
   {
-    path: "/",
+    path: "/contact",
     display: "Contact us",
   },
 ]

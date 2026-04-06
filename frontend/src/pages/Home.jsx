@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom'
 import { BsArrowRight } from 'react-icons/bs'
 import About from '../components/About/About'
 import ServiceList from '../components/Services/ServiceList'
-import DoctorList from '../components/Doctors/DoctorList'
+import ProviderList from '../components/Providers/ProviderList'
 import FaqList from '../components/Faq/FaqList'
 import Testimonial from '../components/Testimonial/Testimonial'
  
@@ -38,7 +38,7 @@ const Home = () => {
                 <br />
                 <p className='text__para'>Easily request services, schedule appointments, and rate providers—all in one place. Say goodbye to long waits and complicated bookings. Try it today and experience seamless utility management!</p>
 
-                 <button className='btn'>Request an Appoinment</button>
+                 <Link to='/providers' className='btn inline-block'>Book a Service</Link>
 
               </div>
                 {/* ============== hero counter ============== */}
@@ -120,7 +120,7 @@ const Home = () => {
                 From your home to the repair.
               </p>
 
-              <Link to='/doctors' className='w-[44px] h-[44px] rounded-full border border-solid boder-[#181A1E] mt-[30px] 
+              <Link to='/providers' className='w-[44px] h-[44px] rounded-full border border-solid boder-[#181A1E] mt-[30px] 
               mx-auto flex items-center justify-center group hover:bg-blue-500 hover:border-none'>
                 <BsArrowRight className='group-hover:text-white w-6 h-5' />
               </Link>
@@ -141,7 +141,7 @@ const Home = () => {
               From your home to the repair.
               </p>
 
-              <Link to='/doctors' className='w-[44px] h-[44px] rounded-full border border-solid boder-[#181A1E] mt-[30px] 
+              <Link to='/providers' className='w-[44px] h-[44px] rounded-full border border-solid boder-[#181A1E] mt-[30px] 
               mx-auto flex items-center justify-center group hover:bg-blue-500 hover:border-none'>
                 <BsArrowRight className='group-hover:text-white w-6 h-5' />
               </Link>
@@ -155,14 +155,14 @@ const Home = () => {
 
             <div className="mt-[px]">
               <h2 className='text-[26px] leading-9 text-headingColor font-[700] text-center'>
-                Book Appoinment
+                Book a Service
               </h2>
               <p className='text-[16px] leading-7 text-textColor font-[400] mt-4 text-center'>
               World class service for everyone. Our Home Service System Offers unmatched, expert and skilled people. 
               From your home to the repair.
               </p>
 
-              <Link to='/doctors' className='w-[44px] h-[44px] rounded-full border border-solid boder-[#181A1E] mt-[30px] 
+              <Link to='/providers' className='w-[44px] h-[44px] rounded-full border border-solid boder-[#181A1E] mt-[30px] 
               mx-auto flex items-center justify-center group hover:bg-blue-500 hover:border-none'>
                 <BsArrowRight className='group-hover:text-white w-6 h-5' />
               </Link>
@@ -209,12 +209,12 @@ const Home = () => {
               Get Service at your doorstep <br /> anytime
             </h2>
             <ul className='pl-4'>
-              <li className='text__para mb-3'>1. Schedule the appoinment directly.</li>
+              <li className='text__para mb-3'>1. Schedule the service directly.</li>
               <li className='text__para mb-3'>2. Search your service here, and contact them.</li>
               <li className='text__para'>3. View your tradesperson who are accepting new customers, use the online
-              scheduling tool to select an appoinment time.</li>
+              scheduling tool to select a service time.</li>
             </ul>
-            <Link to="/">
+            <Link to="/services">
               <button className='btn ml-3'>Learn More</button>
             </Link>
           </div>
@@ -267,10 +267,10 @@ const Home = () => {
           </div>
           
 
-          <DoctorList />
+          <ProviderList />
         </div>
       </section>
-    {/* ============== Our great doctors end ============== */}
+    {/* ============== Our great providers end ============== */}
 
     {/* ============== faq section  ================ */}
     <br /><br /><br />

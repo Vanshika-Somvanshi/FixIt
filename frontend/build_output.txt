@@ -1,0 +1,18 @@
+
+> frontend@0.0.0 build
+> vite build
+
+[36mvite v5.3.5 [32mbuilding for production...[36m[39m
+transforming...
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+[32m✓[39m 74 modules transformed.
+[31mx[39m Build failed in 1.89s
+[31merror during build:
+[31mCould not resolve "../../assets/images/avatar-icon.png" from "src/pages/Dashboard.jsx"[31m
+file: [36mC:/Users/Rounak/OneDrive/Desktop/project/extracted/Service-booking-app-main/Service-booking-app-main/frontend/src/pages/Dashboard.jsx[31m
+    at getRollupError (file:///C:/Users/Rounak/OneDrive/Desktop/project/extracted/Service-booking-app-main/Service-booking-app-main/frontend/node_modules/rollup/dist/es/shared/parseAst.js:392:41)
+    at error (file:///C:/Users/Rounak/OneDrive/Desktop/project/extracted/Service-booking-app-main/Service-booking-app-main/frontend/node_modules/rollup/dist/es/shared/parseAst.js:388:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///C:/Users/Rounak/OneDrive/Desktop/project/extracted/Service-booking-app-main/Service-booking-app-main/frontend/node_modules/rollup/dist/es/shared/node-entry.js:19136:24)
+    at file:///C:/Users/Rounak/OneDrive/Desktop/project/extracted/Service-booking-app-main/Service-booking-app-main/frontend/node_modules/rollup/dist/es/shared/node-entry.js:19096:26[39m
