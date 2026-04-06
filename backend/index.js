@@ -68,7 +68,10 @@ const port = process.env.PORT || 8000;
 
 // Configure CORS
 const corsOptions = {
-    origin: true
+    origin: true, // Allows all origins dynamically
+    credentials: true, // Required for cookies and authorization headers
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Explicitly allow methods
+    allowedHeaders: ['Content-Type', 'Authorization'] // Explicitly allow these headers
 };
 
 // Middleware
